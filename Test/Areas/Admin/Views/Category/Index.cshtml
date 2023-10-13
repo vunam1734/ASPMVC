@@ -1,0 +1,39 @@
+﻿@model List<Category>
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h2>
+            Danh mục chính
+        </h2>
+    </div>
+    <div class="col-md-6 text-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle-fill"></i> Tạo mới
+        </a>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Loại </th>
+            <th>Mã loại</th>
+            <th>Thực hiện</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Name</td>
+                <td>@x.DisplayOrder</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@x.Id" class="btn btn-info"><i class="bi bi-pencil-square"></i> Chỉnh sửa</a>
+                    <a asp-action="Delete" asp-route-id="@x.Id" class="btn btn-danger"><i class="bi bi-trash"></i> Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <partial name="_Notification" />
+}

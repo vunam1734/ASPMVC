@@ -1,0 +1,16 @@
+﻿<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item @(ViewBag.pageindex==0||ViewBag.pageindex==1?"disabled":"")">
+            <a class="page-link" asp-action="Index" asp-route-index=1><<</a>
+        </li>
+        @for (int i = 1; i <= ViewBag.pagecount; i++)
+        {
+            <li class="page-item @(ViewBag.pageindex==i?"active disabled":"")">
+                <a class="page-link" asp-action="Index" asp-route-index=@i>@i</a>
+            </li>
+        }
+        <li class="page-item @(ViewBag.pageindex==ViewBag.pagecount||ViewBag.pagecount==0?"disabled":"")">
+            <a class="page-link" asp-action="Index" asp-route-index=@ViewBag.pagecount>>></a>
+        </li>
+    </ul>
+</nav>

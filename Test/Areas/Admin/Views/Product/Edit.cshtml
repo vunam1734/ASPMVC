@@ -1,0 +1,54 @@
+﻿    @model Product
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <h2>Chỉnh sửa thông tin sản phẩm</h2>
+    <hr />
+    <input asp-for="ImageUrl" type="hidden" />
+    <input asp-for="Id" type="hidden" />
+    <div class="row">
+        <div class="col-md-4">
+            @if (Model.ImageUrl != null)
+            {
+                <div class="col-3">
+                    <img class="img-thumbnail h-auto w-auto" src="\@Model.ImageUrl" alt="Alternate Text" asp-append-version="true" />
+                    <input type="hidden" asp-for="ImageUrl" a />
+                </div>
+            }
+        </div>
+        <div class="=col-md-8">
+            <div class="form-group pb-2">
+                <label>Tên Sản Phẩm</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group pb-2">
+                <label>Thông tin</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group pb-2">
+                <label>Giá sản phẩm</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group pb-2">
+                <label>Danh mục</label>
+                <select asp-for="CategoryId" asp-items=@ViewBag.Lstcategory class="form-control">
+                    <option disabled selected>Chọn danh mục</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group pb-2">
+                <label>Hình ảnh mới</label>
+                <input name="file" type="file" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary"> Lưu </button>
+    <a asp-action="Index" class="btn btn-secondary"> Quay lại</a>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <partial name="_Notification" />
+    <partial name="_FormatTxtarena" />
+
+}
